@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using BetterGenshinImpact.GameTask.Common.Exceptions;
 using Vanara.PInvoke;
 using static BetterGenshinImpact.GameTask.Common.TaskControl;
+using BetterGenshinImpact.Core.Simulator.Extensions;
 
 namespace BetterGenshinImpact.GameTask.AutoTrackPath;
 
@@ -157,7 +158,7 @@ public class TpTask(CancellationToken ct)
         var ra1 = CaptureToRectArea();
         if (!Bv.IsInBigMapUi(ra1))
         {
-            Simulation.SendInput.Keyboard.KeyPress(User32.VK.VK_M);
+            Simulation.SendInput.SimulateAction(GIActions.OpenMap);
             await Delay(1000, ct);
             for (int i = 0; i < 3; i++)
             {
